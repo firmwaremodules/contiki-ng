@@ -32,6 +32,7 @@
 /*---------------------------------------------------------------------------*/
 #include "contiki.h"
 #include "arch/dev/enc28j60/enc28j60.h"
+#include "ti-lib.h"
 #include "board-spi.h"
 
 
@@ -41,19 +42,22 @@
 void
 enc28j60_arch_spi_init(void)
 {
-    board_spi_open(8000000, BOARD_IOID_SPI_CLK, BOARD_IOID_SPI_FSS);
+    board_spi_open(8000000, BOARD_IOID_SPI_CLK, IOID_UNUSED);
+
+    ti_lib_ioc_pin_type_gpio_output(BOARD_IOID_SPI_FSS);
+    enc28j60_arch_spi_deselect();
 }
 /*---------------------------------------------------------------------------*/
 void
 enc28j60_arch_spi_select(void)
 {
-    /* Not necessary - hardware controlled. */
+    ti_lib_gpio_clear_dio(BOARD_IOID_SPI_FSS);
 }
 /*---------------------------------------------------------------------------*/
 void
 enc28j60_arch_spi_deselect(void)
 {
-    /* Not necessary - hardware controlled. */
+    ti_lib_gpio_set_dio(BOARD_IOID_SPI_FSS);
 }
 /*---------------------------------------------------------------------------*/
 uint8_t

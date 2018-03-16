@@ -71,11 +71,10 @@ board_spi_write(const uint8_t *buf, size_t len)
     uint32_t ul;
 
     ti_lib_ssi_data_put(SSI0_BASE, *buf);
-    ti_lib_rom_ssi_data_get(SSI0_BASE, &ul);
+    ti_lib_ssi_data_get(SSI0_BASE, &ul);
     len--;
     buf++;
   }
-
   return true;
 }
 /*---------------------------------------------------------------------------*/
@@ -89,11 +88,11 @@ board_spi_read(uint8_t *buf, size_t len)
   while(len > 0) {
     uint32_t ul;
 
-    if(!ti_lib_rom_ssi_data_put_non_blocking(SSI0_BASE, 0)) {
+    if(!ti_lib_ssi_data_put_non_blocking(SSI0_BASE, 0)) {
       /* Error */
       return false;
     }
-    ti_lib_rom_ssi_data_get(SSI0_BASE, &ul);
+    ti_lib_ssi_data_get(SSI0_BASE, &ul);
     *buf = (uint8_t)ul;
     len--;
     buf++;
