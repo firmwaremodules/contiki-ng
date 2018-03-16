@@ -7,3 +7,9 @@ BOARD_SOURCEFILES += ext-flash.c board-spi.c
 
 ### Signal that we can be programmed with cc2538-bsl
 BOARD_SUPPORTS_BSL=1
+
+ifeq ($(WITH_IP64),1)
+    CFLAGS += -DUIP_FALLBACK_INTERFACE=ip64_uip_fallback_interface
+    BOARD_SOURCEFILES += enc28j60-arch-spi.c
+    MODULES += arch/dev/enc28j60
+endif

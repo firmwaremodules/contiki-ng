@@ -111,7 +111,9 @@
  */
 #define BOARD_IOID_SPI_MOSI       IOID_9
 #define BOARD_IOID_SPI_MISO       IOID_8
-/** @} */
+#define BOARD_IOID_SPI_FSS        IOID_11
+#define BOARD_IOID_SPI_CLK        IOID_10
+ /** @} */
 /*---------------------------------------------------------------------------*/
 /**
  * \name External flash IOID mapping

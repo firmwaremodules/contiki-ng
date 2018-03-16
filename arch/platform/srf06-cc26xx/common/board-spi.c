@@ -113,7 +113,7 @@ board_spi_flush()
 }
 /*---------------------------------------------------------------------------*/
 void
-board_spi_open(uint32_t bit_rate, uint32_t clk_pin)
+board_spi_open(uint32_t bit_rate, uint32_t clk_pin, uint32_t fss_pin)
 {
   uint32_t buf;
 
@@ -134,7 +134,7 @@ board_spi_open(uint32_t bit_rate, uint32_t clk_pin)
                                     SSI_FRF_MOTO_MODE_0,
                                     SSI_MODE_MASTER, bit_rate, 8);
   ti_lib_rom_ioc_pin_type_ssi_master(SSI0_BASE, BOARD_IOID_SPI_MISO,
-                                     BOARD_IOID_SPI_MOSI, IOID_UNUSED, clk_pin);
+                                     BOARD_IOID_SPI_MOSI, fss_pin, clk_pin);
   ti_lib_ssi_enable(SSI0_BASE);
 
   /* Get rid of residual data from SSI port */

@@ -19,6 +19,11 @@ PROCESS_THREAD(router_node_process, ev, data)
   /* Initialize the IP64 module so we'll start translating packets */
   ip64_init();
 
+#if BORDER_ROUTER_CONF_WEBSERVER
+  PROCESS_NAME(webserver_nogui_process);
+  process_start(&webserver_nogui_process, NULL);
+#endif /* BORDER_ROUTER_CONF_WEBSERVER */
+
   /* ... and do nothing more. */
   while(1) {
     PROCESS_WAIT_EVENT();

@@ -1,16 +1,17 @@
 /*
- * Copyright (c) 2017, George Oikonomou - http://www.spd.gr
+ * Copyright (c) 2012, Thingsquare, http://www.thingsquare.com/.
+ * Copyright (c) 2016, Zolertia <http://www.zolertia.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
+ *
  * 3. Neither the name of the copyright holder nor the names of its
  *    contributors may be used to endorse or promote products derived
  *    from this software without specific prior written permission.
@@ -27,21 +28,17 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  */
 /*---------------------------------------------------------------------------*/
-#ifndef PROJECT_CONF_H_
-#define PROJECT_CONF_H_
+#ifndef IP64_CONF_H
+#define IP64_CONF_H
 /*---------------------------------------------------------------------------*/
-#define UIP_CONF_TCP 1
-
-#ifndef WEBSERVER_CONF_CFS_CONNS
-#define WEBSERVER_CONF_CFS_CONNS 2
-#endif
-
-#ifndef BORDER_ROUTER_CONF_WEBSERVER
-#define BORDER_ROUTER_CONF_WEBSERVER 1
-#endif
-
-
+#include "ip64/ip64-eth-interface.h"
 /*---------------------------------------------------------------------------*/
-#endif /* PROJECT_CONF_H_ */
+#define IP64_CONF_UIP_FALLBACK_INTERFACE ip64_eth_interface
+#define IP64_CONF_INPUT                  ip64_eth_interface_input
+#include "arch/dev/enc28j60/enc28j60-ip64-driver.h"
+#define IP64_CONF_ETH_DRIVER             enc28j60_ip64_driver
+/*---------------------------------------------------------------------------*/
+#endif /* IP64_CONF_H */

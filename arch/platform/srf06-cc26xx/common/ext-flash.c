@@ -270,7 +270,8 @@ write_enable(void)
 bool
 ext_flash_open()
 {
-  board_spi_open(4000000, BOARD_IOID_SPI_CLK_FLASH);
+  /* Init SPI peripheral with manual chip select. */
+  board_spi_open(4000000, BOARD_IOID_SPI_CLK_FLASH, IOID_UNUSED);
 
   /* GPIO pin configuration */
   ti_lib_ioc_pin_type_gpio_output(BOARD_IOID_FLASH_CS);

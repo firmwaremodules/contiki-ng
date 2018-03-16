@@ -58,6 +58,8 @@
  * \brief Initialize the SPI interface
  * \param bit_rate The bit rate to use
  * \param clk_pin The IOID for the clock pin. This can be IOID_0 etc
+ * \param fss_pin The IOID for the slave select pin. This can be IOID_0 etc
+ *                When specified the slave select pin is under hardware control.
  * \return none
  *
  * This function will make sure the peripheral is powered, clocked and
@@ -65,7 +67,7 @@
  * board_spi_flush() must be preceded by a call to this function. It is
  * recommended to call board_spi_close() after such chain of calls.
  */
-void board_spi_open(uint32_t bit_rate, uint32_t clk_pin);
+void board_spi_open(uint32_t bit_rate, uint32_t clk_pin, uint32_t fss_pin);
 
 /**
  * \brief Close the SPI interface
